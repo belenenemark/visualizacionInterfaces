@@ -18,12 +18,14 @@ let a=255;
 
 //resuelve ejercicio 2
 function ej2(ctx){
+  
  
   ctx.fillStyle= "red";
   let x=0;
   let y=0;
  ctx.fillRect(x,y,width,height);
  removeClass.classList.add("hidden");
+
 }
 
 function ej3(ctx){
