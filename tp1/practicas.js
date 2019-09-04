@@ -3,6 +3,7 @@ let ctx= document.getElementById("canvas").getContext("2d");
 let width=document.getElementById("canvas").width;
 let height=document.getElementById("canvas").height;
 let ctxgray=document.getElementById("canvas1").getContext("2d");
+let removeClass= document.getElementById("canvas1");
 
 let r=0;
 let g=0;
@@ -22,7 +23,7 @@ function ej2(ctx){
   let x=0;
   let y=0;
  ctx.fillRect(x,y,width,height);
- ctxgray.clearRect(x, y, width, height);//crea un rectangulo con estas medidas
+ removeClass.classList.add("hidden");
 }
 
 function ej3(ctx){
@@ -34,7 +35,7 @@ function ej3(ctx){
           
       }  
   }
-  ctxgray.clearRect(0, 0, width, height);
+  removeClass.classList.add("hidden");
   ctx.putImageData(imageData,0,0);
 }
 function ej4(ctx){
@@ -47,7 +48,7 @@ function ej4(ctx){
        }  
      }
 
-  ctxgray.clearRect(0, 0, width, height);  
+     removeClass.classList.add("hidden");
   ctx.putImageData(imageData,0,0);
 }
 
@@ -67,11 +68,13 @@ function ej5(ctx){
     }
     }
   }
-  ctxgray.clearRect(0, 0, width, height);
+  removeClass.classList.add("hidden");
   ctx.putImageData(imageData,0,0);
 }
 function ej6(ctx){
   
+  removeClass.classList.remove("hidden");
+
   var imagen1= new Image();
   imagen1.src="flag.jpg";
   imagen1.onload=function(){
