@@ -3,90 +3,29 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clase 1 - Template</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h1>Prueba</h1>
-		<a href="ej2.html">Ejercicio 2</a>
-		<a href="ej3.html">Ejercicio 3</a>
-		<a href="ej4.html">Ejercicio 4</a>
-		<a href="ej5.html">Ejercicio 5</a>
+		<div class="content">
+				<h1>Usando la paleta de colores</h1>
+				<div>
+					<ul>
+						<li><a href="ej5.html">Ejercicio 5</a></li>
+						<li><a href="ej6.html">Ejercicio 6</a></li>
+					</ul>
+				</div>
+					<canvas id="canvas" ></canvas>
+				<div class="buttons">
+					<button  onclick="ej2(ctx)" id="ej2">Color firme v1</button>
+					<button id="ej3" onclick="ej3(ctx)">Color firme v2</button>
+					<button id="ej4" onclick="ej4(ctx)">Cambiar a Gradiente simple </button>
+					<button id="ej5" onclick="ej5(ctx)">Gradiente color </button>
+					<button id="ej6" onclick="ej6(ctx)">Imagen</button>
+				</div>
+		</div>
+		
+		
 	</body>
-	<script>
-		let col= 5;
-		let fil=5;
-		var nuevoArray = new Array(fil);
-
-		
-		 for (let index = 0; index <fil; index++) {
-			nuevoArray[index] = new Array(col);
-			 for (let j = 0; j < col; j++) {
-				 nuevoArray[index,j]=Math.floor(Math.random()*100)+1;
-				 
-			 }	
-
-		}
-		let valor=calcularMaximo(nuevoArray);
-		
-		let valores=calcularMaxCalcularMin(nuevoArray);
-		console.log(valores[0]);
-		console.log(valores[1]);
-
-		function calcularMaximo(matriz){
-			let guardaSuma=0;
-			for (let index = 0; index <fil; index++) {
-				let suma=0;
-				for (let j = 0; j < col; j++) {
-					suma= suma+matriz[index,j];
-					
-				}
-				if(suma>guardaSuma){
-					guardaSuma=suma;
-				}
-				
-			}
-			return guardaSuma;
-		}
-
-		function calcularMaxCalcularMin(matriz){
-			let guardaSuma=new Array(2);
-			guardaSuma[0]=0;
-			guardaSuma[1]=10000;
-			for (let index = 0; index <fil; index++) {
-				let suma=0;
-				for (let j = 0; j < col; j++) {
-					suma= suma+matriz[index,j];
-					
-				}
-				
-				if((index % 2)==0){
-					if(suma>guardaSuma[0]){
-						guardaSuma[0]=suma;
-					}
-				}else if ((index%2)!=0) {
-					if((guardaSuma[1]==0) && (index==0)) {
-						guardaSuma[1]=suma;
-					}else{
-						if(suma<guardaSuma[1]){
-							guardaSuma[1]=suma;
-						}
-					}
-				}
-				
-			}
-			return guardaSuma;
-
-		}
-
-		
-		
-
-		
-		
-		
-
-
-		
-		
-
-	</script>
+	<script src="ejercicio1.js"></script>
+	<script src="practicas.js"></script>
 </html>
