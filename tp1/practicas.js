@@ -2,6 +2,7 @@
 let ctx= document.getElementById("canvas").getContext("2d");
 let width=document.getElementById("canvas").width;
 let height=document.getElementById("canvas").height;
+let ctxgray=document.getElementById("canvas1").getContext("2d");
 
 let r=0;
 let g=0;
@@ -20,7 +21,8 @@ function ej2(ctx){
   ctx.fillStyle= "red";
   let x=0;
   let y=0;
- ctx.fillRect(x,y,width,height);//crea un rectangulo con estas medidas
+ ctx.fillRect(x,y,width,height);
+ ctxgray.clearRect(x, y, width, height);//crea un rectangulo con estas medidas
 }
 
 function ej3(ctx){
@@ -32,6 +34,7 @@ function ej3(ctx){
           
       }  
   }
+  ctxgray.clearRect(0, 0, width, height);
   ctx.putImageData(imageData,0,0);
 }
 function ej4(ctx){
@@ -43,6 +46,8 @@ function ej4(ctx){
          setPixel(imageData,y,x,color,color,color,a);//para el gradiente en vertical se pasan los parametros invertidos 
        }  
      }
+
+  ctxgray.clearRect(0, 0, width, height);  
   ctx.putImageData(imageData,0,0);
 }
 
@@ -62,17 +67,36 @@ function ej5(ctx){
     }
     }
   }
+  ctxgray.clearRect(0, 0, width, height);
   ctx.putImageData(imageData,0,0);
 }
 function ej6(ctx){
+  
   var imagen1= new Image();
   imagen1.src="flag.jpg";
   imagen1.onload=function(){
     ctx.drawImage(imagen1,0,0);
-  }
+    ctxgray.drawImage(imagen1,0,0);
+    grayColor(ctxgray);
+}
 
   
 }
+// dibujando la imagen a gris
+function grayColor(context) {
+  var imgData = context.getImageData(0, 0, width, height);
+      var pixels  = imgData.data;
+      for (var i = 0, n = pixels.length; i < n; i += 4) {
+      var grayscale = pixels[i] * .3 + pixels[i+1] * .59 + pixels[i+2] * .11;
+      pixels[i  ] = grayscale;        
+      pixels[i+1] = grayscale;        
+      pixels[i+2] = grayscale;        
+    
+  }
+ 
+  context.putImageData(imgData, 0, 0);
+}
+//seteando pixeles
 function setPixel(imageData,x,y,r,g,b,a) {
   let  index=(x+y*imageData.width)*4;
     imageData.data[index+0]=r;
