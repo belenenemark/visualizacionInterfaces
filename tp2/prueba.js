@@ -13,7 +13,7 @@ console.log(y);
  });
 }
 
-//ejercicio 2,3,4,5,10
+//ejercicio 2,3,4,5,6(parte 1)10
 var context =  canvas.getContext('2d');
 var circulos = new Poligono(context);
 var poligonos = [];
@@ -28,14 +28,35 @@ function cerrar(){
         }
 }
 
+function esVacio(x,y) {
+    
+
+    if(poligonos.length > 0){
+        for (let index = 0; index < poligonos.length; index++) {
+           let poligono = poligonos[index];
+           if(poligono.circuloClickeado(x,y) || poligono.centroClickeado(x,y)){
+               return false;
+           }
+            
+        }
+      
+    }
+    return true;
+    
+}
+
 canvas.onclick=function(e){ 
     let x = e.pageX - this.offsetLeft; 
     let y = e.pageY - this.offsetTop; 
-    let circle= new Circulo(x,y,"red",10);
     
-    circle.draw(context); 
-    circulos.addCirculo(circle);
-    console.log(circulos.getCirculo.length);     
+    if(esVacio(x,y)){
+        
+        let circle= new Circulo(x,y,"red",10);
+        circle.draw(context); 
+        circulos.addCirculo(circle);
+    }
+    
+      
 }
 
 
@@ -58,4 +79,3 @@ canvas.onclick=function(e){
 //      console.log(y);
 //  });
  
-  

@@ -54,10 +54,11 @@ class Circulo extends Figura {
      context.fill();
 
    }
-
-   isClicked(){
-    var posicion = Math.sqrt( Math.pow((x - this.posx),2) + Math.pow((y - this.posy),2)  );
-    return posicion <= this.radio;
+   
+   isClicked(x,y){
+       console.log("entra al isclicked");
+    let pos = Math.sqrt( Math.pow((x - this.x),2) + Math.pow((y - this.y),2)  );
+    return pos <= this.radio;
    }
     
 

@@ -54,4 +54,18 @@ class Poligono{
         this.circuloCentro= new Circulo(x,y,"green",7);
         this.circuloCentro.draw(this.ctx);
     }
+    centroClickeado(x,y){
+        
+        return this.circuloCentro.isClicked(x,y);
+    }
+    circuloClickeado(x,y){
+        
+        for (let index = 0; index < this.arreglo.length; index++) {
+            if(this.arreglo[index].isClicked(x,y)){
+                return true;
+            }
+            
+        }
+        return false;
+    }
 }
