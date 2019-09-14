@@ -1,23 +1,30 @@
 
-
-
-//ejercicio 1
+//variables arriba
 let but1= document.getElementById("ej1");
-but1.onclick=function(){
-       // prueba con onclick
- canvas.addEventListener("click",function(e){
-let x = e.pageX - this.offsetLeft; 
- let y = e.pageY - this.offsetTop; 
-   console.log(x);
-console.log(y);
- });
-}
-
-//ejercicio 2,3,4,5,6(parte 1)10
 var context =  canvas.getContext('2d');
 var circulos = new Poligono(context);
 var poligonos = [];
-let cerrarP= document.getElementById("cerrarP").addEventListener("click",cerrar);
+let cerrarP= document.getElementById("cerrarP")
+
+//acciones
+but1.addEventListener("click",detectarClicksConsola);
+canvas.addEventListener("click",crearCirculos);
+cerrarP.addEventListener("click",cerrar);
+
+
+
+
+//ejercicio 2,3,4,5,6(parte 1)10
+//funciones
+function detectarClicksConsola(){
+    canvas.addEventListener("click",function(e){
+        let x = e.pageX - this.offsetLeft; 
+        let y = e.pageY - this.offsetTop; 
+       console.log(x);
+    console.log(y);
+    });
+}
+
 function cerrar(){
         if(circulos.getCount() > 2){
             circulos.cerrarPoligono(context);
@@ -29,9 +36,7 @@ function cerrar(){
 }
 
 function esVacio(x,y) {
-    
-
-    if(poligonos.length > 0){
+     if(poligonos.length > 0){
         for (let index = 0; index < poligonos.length; index++) {
            let poligono = poligonos[index];
            if(poligono.circuloClickeado(x,y) || poligono.centroClickeado(x,y)){
@@ -45,9 +50,9 @@ function esVacio(x,y) {
     
 }
 
-canvas.onclick=function(e){ 
-    let x = e.pageX - this.offsetLeft; 
-    let y = e.pageY - this.offsetTop; 
+function crearCirculos() {
+    let x = event.pageX - this.offsetLeft; 
+    let y = event.pageY - this.offsetTop; 
     
     if(esVacio(x,y)){
         
@@ -55,27 +60,8 @@ canvas.onclick=function(e){
         circle.draw(context); 
         circulos.addCirculo(circle);
     }
-    
-      
 }
 
 
 
 
-
-
-//prueba con double click
-//  canvas.addEventListener("dblclick",function(e){
-//     let x = e.pageX - this.offsetLeft; 
-//      let y = e.pageY - this.offsetTop; 
-//      console.log(x);
-//      console.log(y);
-//  });
-
-//  canvas.addEventListener("drag",function(e){
-//     let x = e.pageX - this.offsetLeft; 
-//      let y = e.pageY - this.offsetTop; 
-//      console.log(x);
-//      console.log(y);
-//  });
- 
