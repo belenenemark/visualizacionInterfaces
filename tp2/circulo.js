@@ -52,8 +52,12 @@ class Circulo extends Figura {
      context.arc(this.x, this.y, radius, 0, 2 * Math.PI);
      context.fillStyle = this.color;
      context.fill();
-    
 
+   }
+
+   isClicked(){
+    var posicion = Math.sqrt( Math.pow((x - this.posx),2) + Math.pow((y - this.posy),2)  );
+    return posicion <= this.radio;
    }
     
 

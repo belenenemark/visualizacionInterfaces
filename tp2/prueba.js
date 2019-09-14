@@ -13,7 +13,7 @@ console.log(y);
  });
 }
 
-//ejercicio 2,3
+//ejercicio 2,3,4,5,10
 var context =  canvas.getContext('2d');
 var circulos = new Poligono(context);
 var poligonos = [];
@@ -28,10 +28,7 @@ function cerrar(){
         }
 }
 
-canvas.onclick=function(e){
-    
-   
-    
+canvas.onclick=function(e){ 
     let x = e.pageX - this.offsetLeft; 
     let y = e.pageY - this.offsetTop; 
     let circle= new Circulo(x,y,"red",10);
