@@ -17,6 +17,9 @@ setY(y){
 setColor(color){
    this.color=color;
 }
+getColor(){
+    return this.color;
+}
 getX(){
     return this.x;
 

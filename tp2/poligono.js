@@ -69,5 +69,38 @@ class Poligono{
         return false;
     }
 
+    devuelveClickeado(x,y){
+        for(let i =0;i<this.arreglo.length;i++){
+          if(this.arreglo[i].isClicked(x,y)){
+            return this.arreglo[i];
+          }
+        }
+        if (this.centro != null){
+          if (this.centro.isClicked(x,y))
+          {
+            return this.centro;
+          }
+        }
+      }
+
+      moverCentro(x,y){
+        for(let i=0;i<this.arreglo.length;i++){
+          this.arreglo[i].setX(this.arreglo[i].getX()+x)
+          this.arreglo[i].setY= this.arreglo[i].getY()+y);
+        }
+        ctx.clearRect(0, 0, 800, 600);
+       
+        for(let i=0;i<this.arreglo.length;i++){
+          
+          if (this.arreglo.length>1)
+          {
+            this.drawLine(this.getUnCirculo(this.arreglo.length-1),this.getUnCirculo(this.arreglo.length-2));
+          }
+        }
+        this.cerrarPoligono(ctx);
+        this.generarCentro();
+    
+      }
+
    
 }
