@@ -21,8 +21,8 @@ function clean(){
     general(color);
 
 }
-
 function general(color){
+    
     let mouse={x:0,y:0};
     //capturo la posicion del mouse
     canvas.addEventListener('mousemove',function(e){
@@ -53,7 +53,8 @@ function general(color){
     };
 
 }
-//borrar en el lienzo 
+//ejercicio 2-carga de archivos desde disco
+
 
 
 
