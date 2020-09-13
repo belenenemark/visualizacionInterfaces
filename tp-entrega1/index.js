@@ -16,6 +16,11 @@ function draw(){
     general(color);  
 
 }
+function clean(){
+    let color="#FFFFFF";
+    general(color);
+
+}
 
 function general(color){
     let mouse={x:0,y:0};
@@ -49,11 +54,6 @@ function general(color){
 
 }
 //borrar en el lienzo 
-function clean(){
-    let color="#FFFFFF";
-    general(color);
 
-
-}
 
 
