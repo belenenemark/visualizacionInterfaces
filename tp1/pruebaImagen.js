@@ -12,7 +12,6 @@ let a=255;
 //cargado de la imagen 
 var imagen1= new Image();
 imagen1.src="flag.jpg";
-
 imagen1.onload=function(){
     ctx.drawImage(imagen1,0,0);
     ctxgray.drawImage(imagen1,0,0);
