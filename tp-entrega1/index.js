@@ -10,6 +10,10 @@ canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 //ejercicio 1-hacer la cartuchera de paint
 let lapiz= document.getElementById("lapiz").addEventListener('click',draw);
 let goma= document.getElementById("goma").addEventListener('click',clean);
+let download=document.getElementById("download");
+let descarga=download.addEventListener("click",function(e){
+    save();
+});
 //dibujar en el lienzo
 function draw(){
     ctx.fillStyle="#ffffff";
@@ -127,7 +131,7 @@ function contrast(contraste,pixels){
 
 input.onchange= e=>{
     //limpiar el canvas
-    var context=canvas.getContext("2d");
+    let context=canvas.getContext("2d");
     context.fillStyle="#ff0000";
     context.fillRect(0,0,canvas.clientWidth,canvas.height);
     //empieza a leer el archivo
@@ -139,7 +143,6 @@ input.onchange= e=>{
         let content=readerEvent.target.result;
         let image=new Image();
         image.src=content;
-       
         image.onload=function(){
             let imageAspectRatio=(1.0*this.height)/this.width;
             let imageScaledWidth=canvas.width;
@@ -159,37 +162,44 @@ input.onchange= e=>{
             blw.addEventListener("click",function(e){
                 bw(pixels);
                 context.putImageData(imageData,0,0);
-
             });
             //negativo
-            neg.addEventListener("click",function(e){
-                
+            neg.addEventListener("click",function(e){    
                 negative(pixels);
                 context.putImageData(imageData,0,0);
             });
             //sepia
             sep.addEventListener("click",function(e){
-                    console.log("hola");
+                   
                     sepia(pixels);
                     context.putImageData(imageData,0,0);
 
             });
-
-                //brillo
+           //brillo
                 con.addEventListener("click",function(e){
                     contrast(100,pixels);
                     context.putImageData(imageData,0,0);
 
                 });
 
-                
-
-                
-            
-            
-
         }
     }
 }
+//guardar el archivo 
+function save(){
+    
+    let link = window.document.createElement( 'a' ),
+        url = canvas.toDataURL(),
+        filename = 'imagen-modificada.jpg';
+ 
+    link.setAttribute( 'href', url );
+    link.setAttribute( 'download', filename );
+    link.style.visibility = 'hidden';
+    window.document.body.appendChild( link );
+    link.click();
+    window.document.body.removeChild( link );
+}
+
+
 
 
