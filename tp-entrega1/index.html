@@ -9,9 +9,16 @@
 <body>
     <div id="all">
             <h1>Entregable 1-Paint y Filtros</h1>
+            <button onclick="document.querySelector('#imagen').click();">Select File..</button>
+            <input type="file" name="imagen" id="imagen" style="display: none;"accept="image/*">
         
             <img src="lapiz.jpg" id="lapiz">
             <img src="goma.png" id="goma">
+            <input type="button" value="bw" id="bw">
+            <input type="button" value="sepia" id="sepia">
+            <input type="button" value="negative" id="negative">
+            <input type="button" value="contrast" id="contrast">
+
         
         <div id="content">
             <canvas id="canvas" ></canvas>
