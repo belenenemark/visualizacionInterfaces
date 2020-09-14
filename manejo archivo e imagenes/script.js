@@ -6,21 +6,25 @@ let input=document.getElementById("imagen");
 let paintStyle=getComputedStyle(espacio);
 canvas.width=parseInt(paintStyle.getPropertyValue("width"));
 canvas.height=parseInt(paintStyle.getPropertyValue("height"));
-//limpiar el canvas
-var context=canvas.getContext("2d");
-context.fillStyle="#ff0000";
-context.fillRect(0,0,canvas.clientWidth,canvas.height);
+
+
 //cuando hace click el input 
 
 input.onchange= e=>{
+    //limpiar el canvas
+    var context=canvas.getContext("2d");
+    context.fillStyle="#ff0000";
+    context.fillRect(0,0,canvas.clientWidth,canvas.height);
+    //empieza a leer el archivo
     let file=e.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
+    //una vez que esta cargado activa el evento
     reader.onload=readerEvent=>{
         let content=readerEvent.target.result;
         let image=new Image();
         image.src=content;
-        console.log(content);
+       
         image.onload=function(){
             let imageAspectRatio=(1.0*this.height)/this.width;
             let imageScaledWidth=canvas.width;
