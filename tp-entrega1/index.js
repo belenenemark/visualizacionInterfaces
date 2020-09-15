@@ -9,7 +9,9 @@ canvas.width=parseInt(paintStyle.getPropertyValue("width"));
 canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 //ejercicio 1-hacer la cartuchera de paint
 let lapiz= document.getElementById("lapiz").addEventListener('click',draw);
+lapiz.addEventListener('touchstart',draw);
 let goma= document.getElementById("goma").addEventListener('click',clean);
+goma.addEventListener('touchstart',clean);
 let download=document.getElementById("download");
 //limpiar lienzo
 let cleanLienzo=document.getElementById("lienzo");
