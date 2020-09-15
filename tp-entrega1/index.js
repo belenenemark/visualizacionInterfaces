@@ -40,6 +40,11 @@ function general(color){
         mouse.x=e.pageX-this.offsetLeft;
         mouse.y=e.pageY-this.offsetTop;     
     },false);
+    //lo vamos a hacer touch
+    canvas.addEventListener('touchmove',function(e){
+        mouse.x=e.pageX-this.offsetLeft;
+        mouse.y=e.pageY-this.offsetTop;     
+    },false);
     
     //definicion del lapiz para dibujar
     ctx.lineWidth=3;
@@ -52,9 +57,20 @@ function general(color){
         ctx.moveTo(mouse.x,mouse.y);
         canvas.addEventListener('mousemove',onPaint,false);
     },false);
+    //accion dibujo para touch
+    canvas.addEventListener('touchstart',function(e){
+        ctx.beginPath();
+        ctx.moveTo(mouse.x,mouse.y);
+        canvas.addEventListener('touchmove',onPaint,false);
+    },false);
     //accion para que deje de dibujar
     canvas.addEventListener('mouseup',function(){
         canvas.removeEventListener('mousemove',onPaint,false);
+    
+    },false);
+    //accion deja de dibujar touch
+    canvas.addEventListener('touchend',function(){
+        canvas.removeEventListener('touchmove',onPaint,false);
     
     },false);
     //genera la linea mientras va dibujando 
