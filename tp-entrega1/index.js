@@ -9,9 +9,7 @@ canvas.width=parseInt(paintStyle.getPropertyValue("width"));
 canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 //ejercicio 1-hacer la cartuchera de paint
 let lapiz= document.getElementById("lapiz").addEventListener('click',draw);
-lapiz.addEventListener('touchstart',draw);
 let goma= document.getElementById("goma").addEventListener('click',clean);
-goma.addEventListener('touchstart',clean);
 let download=document.getElementById("download");
 //limpiar lienzo
 let cleanLienzo=document.getElementById("lienzo");
@@ -42,11 +40,6 @@ function general(color){
         mouse.x=e.pageX-this.offsetLeft;
         mouse.y=e.pageY-this.offsetTop;     
     },false);
-    //lo vamos a hacer touch
-    canvas.addEventListener('touchmove',function(e){
-        mouse.x=e.pageX-this.offsetLeft;
-        mouse.y=e.pageY-this.offsetTop;     
-    },false);
     
     //definicion del lapiz para dibujar
     ctx.lineWidth=3;
@@ -59,20 +52,10 @@ function general(color){
         ctx.moveTo(mouse.x,mouse.y);
         canvas.addEventListener('mousemove',onPaint,false);
     },false);
-    //accion dibujo para touch
-    canvas.addEventListener('touchstart',function(e){
-        ctx.beginPath();
-        ctx.moveTo(mouse.x,mouse.y);
-        canvas.addEventListener('touchmove',onPaint,false);
-    },false);
+
     //accion para que deje de dibujar
     canvas.addEventListener('mouseup',function(){
         canvas.removeEventListener('mousemove',onPaint,false);
-    
-    },false);
-    //accion deja de dibujar touch
-    canvas.addEventListener('touchend',function(){
-        canvas.removeEventListener('touchmove',onPaint,false);
     
     },false);
     //genera la linea mientras va dibujando 
@@ -201,68 +184,72 @@ function blur(pixels){
 input.onchange= e=>{
     //limpiar el canvas
     let context=canvas.getContext("2d");
-    context.fillStyle="#ff0000";
+    context.fillStyle="#ffffff";
     context.fillRect(0,0,canvas.clientWidth,canvas.height);
     //empieza a leer el archivo
     let file=e.target.files[0];
     let reader = new FileReader();
-    reader.readAsDataURL(file);
-    //una vez que esta cargado activa el evento
-    reader.onload=readerEvent=>{
-        let content=readerEvent.target.result;
-        let image=new Image();
-        image.src=content;
-        image.onload=function(){
-            let imageAspectRatio=(1.0*this.height)/this.width;
-            let imageScaledWidth=canvas.width;
-            let imageScaledHeight=canvas.width*imageAspectRatio;
-            //dibuja la imagen en el canvas
-            context.drawImage(this,0,0,imageScaledWidth,imageScaledHeight);
-            //obtiene la imagen
-            let imageData=context.getImageData(0,0,imageScaledWidth,imageScaledHeight);
-            //modifica la data salteando de a 1 a negro
-            var pixels  = imageData.data;
-
-            //todos los botones
-            let blw= document.getElementById("bw");
-            let neg=document.getElementById("negative");
-            let sep=document.getElementById("sepia");
-            let con=document.getElementById("contrast");
-            let blu=document.getElementById("blur");
-            //blanco y negro
-           
-            blw.addEventListener("click",function(e){
-                bw(pixels);
-                context.putImageData(imageData,0,0);
-            });
-            //negativo
-            neg.addEventListener("click",function(e){    
-                negative(pixels);
-                context.putImageData(imageData,0,0);
-            });
-            //sepia
-            sep.addEventListener("click",function(e){
-                   
-                    sepia(pixels);
+    if (file!=null){
+        reader.readAsDataURL(file);
+        //una vez que esta cargado activa el evento
+        reader.onload=readerEvent=>{
+            let content=readerEvent.target.result;
+            let image=new Image();
+            image.src=content;
+            image.onload=function(){
+                let imageAspectRatio=(1.0*this.height)/this.width;
+                let imageScaledWidth=canvas.width;
+                let imageScaledHeight=canvas.width*imageAspectRatio;
+                //dibuja la imagen en el canvas
+                context.drawImage(this,0,0,imageScaledWidth,imageScaledHeight);
+                //obtiene la imagen
+                let imageData=context.getImageData(0,0,imageScaledWidth,imageScaledHeight);
+                //modifica la data salteando de a 1 a negro
+                var pixels  = imageData.data;
+    
+                //todos los botones
+                let blw= document.getElementById("bw");
+                let neg=document.getElementById("negative");
+                let sep=document.getElementById("sepia");
+                let con=document.getElementById("contrast");
+                let blu=document.getElementById("blur");
+                //blanco y negro
+               
+                blw.addEventListener("click",function(e){
+                    bw(pixels);
                     context.putImageData(imageData,0,0);
-
-            });
-           //brillo
-                con.addEventListener("click",function(e){
-                    contrast(100,pixels);
-                    context.putImageData(imageData,0,0);
-
                 });
-            //blur
-            blu.addEventListener("click",function(e){
-                blur(pixels);
-                context.putImageData(imageData,0,0);
-
-            });
-
-
+                //negativo
+                neg.addEventListener("click",function(e){    
+                    negative(pixels);
+                    context.putImageData(imageData,0,0);
+                });
+                //sepia
+                sep.addEventListener("click",function(e){
+                       
+                        sepia(pixels);
+                        context.putImageData(imageData,0,0);
+    
+                });
+               //brillo
+                    con.addEventListener("click",function(e){
+                        contrast(100,pixels);
+                        context.putImageData(imageData,0,0);
+    
+                    });
+                //blur
+                blu.addEventListener("click",function(e){
+                    blur(pixels);
+                    context.putImageData(imageData,0,0);
+    
+                });
+    
+    
+            }
         }
+
     }
+   
 }
 //guardar el archivo
 let descarga=download.addEventListener("click",function(e){
