@@ -183,10 +183,10 @@ function blur(pixels){
 
 //apartir de aca pasa toda la magia con la imagen 
 input.onchange= e=>{
+    
     //limpiar el canvas
     let context=canvas.getContext("2d");
-    context.fillStyle="#ffffff";
-    context.fillRect(0,0,canvas.clientWidth,canvas.height);
+    
     //empieza a leer el archivo
     let file=e.target.files[0];
     let reader = new FileReader();
@@ -197,14 +197,15 @@ input.onchange= e=>{
             let content=readerEvent.target.result;
             let image=new Image();
             image.src=content;
+            
             image.onload=function(){
-                let imageAspectRatio=(1.0*this.height)/this.width;
-                let imageScaledWidth=canvas.width;
-                let imageScaledHeight=canvas.width*imageAspectRatio;
+                
+                canvas.width = image.width;
+                canvas.height = image.height;
                 //dibuja la imagen en el canvas
-                context.drawImage(this,0,0,imageScaledWidth,imageScaledHeight);
+                context.drawImage(this,0,0);
                 //obtiene la imagen
-                let imageData=context.getImageData(0,0,imageScaledWidth,imageScaledHeight);
+                let imageData=context.getImageData(0,0,canvas.width,canvas.height);
                 //modifica la data salteando de a 1 a negro
                 var pixels  = imageData.data;
     
