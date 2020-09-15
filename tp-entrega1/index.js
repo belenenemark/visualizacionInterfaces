@@ -128,7 +128,7 @@ function contrast(contraste,pixels){
 
 }
 
-
+//apartir de aca pasa toda la magia con la imagen 
 input.onchange= e=>{
     //limpiar el canvas
     let context=canvas.getContext("2d");
