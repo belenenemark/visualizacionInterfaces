@@ -1,0 +1,87 @@
+div{
+    width: 100px;
+    height: 100px;
+
+}
+
+.estatico{
+    background-color: red;
+    position:static;
+
+}
+.fijo{
+    background-color: blue;
+    position: fixed;
+    top: 30px;
+    right: 5px;
+}
+.relativo{
+    background-color: orange;
+    position: relative;
+    left: 20px;
+
+}
+.absoluto{
+    background-color: green;
+    
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+}
+.zindex{
+    background-color:yellow ;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: -1;
+
+}
+
+.izquierdo{
+    background-color: brown;
+    float: left;
+
+}
+.derecho{
+    background-color: blueviolet;
+    float: right;
+
+}
+
+.linearGradient{
+    /* background: linear-gradient(#e66465, #9198e5); */
+    background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+}
+
+.transicion{
+    background-color: #06c;
+    transition: background-color .35s ease-out;
+}
+.transicion:hover{
+    background-color: #c00;
+    transition: background-color .35s ease-in;
+}
+
+.translate{
+    background-color: #c00;
+    transform: translate(200px,100px)
+}
+
+.rotate{
+    background-color: #06c;
+    transform: rotate(45deg);
+}
+
+.scale{
+    margin: 100px;
+    background-color: aqua;
+    transform: scale(2);
+}
+
+.skew{
+    background-color: green;
+    transform: skew(25deg,25deg);
+}

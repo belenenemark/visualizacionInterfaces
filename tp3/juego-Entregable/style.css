@@ -1,0 +1,140 @@
+.boton{
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background:#638cb5;
+  border:0px;
+  width:80px;
+  height:150px;
+ }
+
+
+.contenedor{
+  position: relative;
+    margin: auto;
+    width: 500px;
+   
+    background-repeat: repeat-x;
+    
+}
+
+.fondo1{
+  height: 292px;
+  background:url(images/fondo1.png) left center;
+  z-index: -4;
+    background-size: cover;
+    animation: back 60s linear infinite;
+
+}
+
+.fondo2{
+  top: 105px;
+  height: 187px;
+  background:url(images/fondo2.png) left center;
+  z-index: -3;
+  background-size: cover;
+  animation: back 40s linear infinite;
+
+}
+.fondo3{
+  top: 58px;
+  height: 99px;
+  background:url(images/fondo3.png) left center;
+  z-index: -2;
+  background-size: cover;
+  animation: back 25s linear infinite;
+
+}
+
+.fondo4{
+  top: 99px;
+  height: 50px;
+  background:url(images/fondo4.png) left center;
+  z-index: -1;
+  background-size: cover;
+  animation: back 10s linear infinite;
+
+}
+
+
+
+ #enemigo{
+    position: absolute;
+    top: -14px;
+    right: -400px;
+    width: 30px;
+    height: 20px;
+    background:url(images/piedraa.png) left center;
+    z-index: 1;
+    /* animation: impacto 0.8s steps(6) infinite; */
+  }
+
+  .emovimiento{
+    animation: play 0.8s steps(6) infinite;
+  }
+
+
+.emove{
+  animation: emove 7s linear infinite;
+
+}
+
+
+  @keyframes emove{
+    from {right: 0px;}
+    to {right: 500px;}
+  }
+  @keyframes back{
+    100% {background-position: -502px;}
+  }
+
+
+.correr{
+    position: absolute;
+    top:-41px;
+    left:60px;
+    width: 38px;
+    height: 48px;
+    background:url(images/luffy.png) left center;
+    animation: play 0.8s steps(6) infinite;
+    z-index: 10;
+  }
+  @keyframes play{
+    100% {background-position: -228px;}
+  }
+  .salto{
+    position: absolute;
+    top:-41px;
+    left:67px;
+    width: 60px;
+    height: 37px;
+    background:url(images/luffyjump.png) left center;
+    animation: jump 0.8s;
+    z-index: 10;
+
+  }
+  @keyframes jump{
+    0% {transform: translate(0px,0px);}
+    25% {transform: translate(0px,-80px);}
+    50% {transform: translate(0px,-100px);}
+    75% {transform: translate(0px,-80px);}
+    100% {transform: translate(0px,0px);}
+
+  }
+
+ .caer{
+  position: relative;
+  top:100px;
+  left:67px;
+  width: 60px;
+  height: 37px;
+  background:url(images/luffyjump.png) left center;
+  animation: caer 0.4s;
+  z-index: 10;
+  
+ }
+ @keyframes caer{
+  100%{top: 192px; }
+
+}

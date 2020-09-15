@@ -1,23 +1,30 @@
 
-
-
-//ejercicio 1
+//variables arriba
 let but1= document.getElementById("ej1");
-but1.onclick=function(){
-       // prueba con onclick
- canvas.addEventListener("click",function(e){
-let x = e.pageX - this.offsetLeft; 
- let y = e.pageY - this.offsetTop; 
-   console.log(x);
-console.log(y);
- });
-}
-
-//ejercicio 2,3,4,5,6(parte 1)10
 var context =  canvas.getContext('2d');
 var circulos = new Poligono(context);
 var poligonos = [];
-let cerrarP= document.getElementById("cerrarP").addEventListener("click",cerrar);
+var circuloElegido = null;
+var arrastrar= false;
+let cerrarP= document.getElementById("cerrarP")
+
+//acciones
+but1.addEventListener("click",detectarClicksConsola);
+canvas.addEventListener("click",crearCirculos);
+cerrarP.addEventListener("click",cerrar);
+canvas.addEventListener("mousedown", seleccionCirculo);
+canvas.addEventListener("mouseup", soltarCirculo);
+canvas.addEventListener("mousemove", armarFigura);
+//ejercicio 2,3,4,5,6(parte 1)10
+//funciones
+function detectarClicksConsola(){
+    canvas.addEventListener("click",function(e){
+        let x = e.pageX - this.offsetLeft; 
+        let y = e.pageY - this.offsetTop; 
+       console.log(x);
+    console.log(y);
+    });
+}
 function cerrar(){
         if(circulos.getCount() > 2){
             circulos.cerrarPoligono(context);
@@ -27,11 +34,8 @@ function cerrar(){
             alert("no tienes cantidad suficiente para cerrar poligono");
         }
 }
-
 function esVacio(x,y) {
-    
-
-    if(poligonos.length > 0){
+     if(poligonos.length > 0){
         for (let index = 0; index < poligonos.length; index++) {
            let poligono = poligonos[index];
            if(poligono.circuloClickeado(x,y) || poligono.centroClickeado(x,y)){
@@ -39,15 +43,14 @@ function esVacio(x,y) {
            }
             
         }
-      
     }
     return true;
     
 }
 
-canvas.onclick=function(e){ 
-    let x = e.pageX - this.offsetLeft; 
-    let y = e.pageY - this.offsetTop; 
+function crearCirculos() {
+    let x = event.pageX - this.offsetLeft; 
+    let y = event.pageY - this.offsetTop; 
     
     if(esVacio(x,y)){
         
@@ -55,27 +58,40 @@ canvas.onclick=function(e){
         circle.draw(context); 
         circulos.addCirculo(circle);
     }
-    
+}
+
+function seleccionCirculo(e){
+    let x= e.layerX;
+    let y = e.layerY;
+    circuloElegido= poligonos.devuelveClickeado(x,y);
+    if(circuloElegido != null){
+        arrastrar = true;
+      }
+
       
 }
 
+function soltarCirculo(e) {
+    arrastrar=false;
+    circuloElegido = null;
+  }
+  function redraw()
+  function armarFigura(e){
+    let x = e.layerX;
+    let y = e.layerY;
+    if (this.arrastrar){
+      if(circuloElegido.getColor()=="green"){
+        var movimientoX = x- this.circuloElegido.getX();
+        var movimientoY = y - this.circuloElegido.getY();
+        this.circuloElegido.setX(x);
+        this.circuloElegido.setY(y);
+        poligono.moverCentro(movimientoX,movimientoY);
+      }else{
+        this.circuloElegido.setX(x);
+        this.circuloElegido.setY(y);
+        redraw();
+      }
+    }
+  }
 
 
-
-
-
-//prueba con double click
-//  canvas.addEventListener("dblclick",function(e){
-//     let x = e.pageX - this.offsetLeft; 
-//      let y = e.pageY - this.offsetTop; 
-//      console.log(x);
-//      console.log(y);
-//  });
-
-//  canvas.addEventListener("drag",function(e){
-//     let x = e.pageX - this.offsetLeft; 
-//      let y = e.pageY - this.offsetTop; 
-//      console.log(x);
-//      console.log(y);
-//  });
- 
