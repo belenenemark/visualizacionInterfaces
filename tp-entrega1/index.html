@@ -11,11 +11,13 @@
             <h1>Entregable 1-Paint y Filtros</h1>
            
             <input type="file" name="imagen" id="imagen" style="display: none;"accept="image/*">
-        
             <img src="lapiz.jpg" id="lapiz">
             <img src="goma.png" id="goma">
             <button onclick="document.querySelector('#imagen').click();">Select File..</button>
-            <input type="button" value="lienzo" id="lienzo">
+            <label for="Color">Elegi un color</label>
+            <input type="color" name="color" id="color">
+
+            <input type="button" value="Limpiar lienzo" id="lienzo">
             <input type="button" value="bw" id="bw">
             <input type="button" value="sepia" id="sepia">
             <input type="button" value="negative" id="negative">

@@ -21,9 +21,10 @@ cleanLienzo.addEventListener("click",function(e){
 
 //dibujar en el lienzo
 function draw(){
-    ctx.fillStyle="#ffffff";
-    ctx.fillRect(0,0,canvas.clientWidth,canvas.height);
-    let color='#ff0000';
+   
+    let valueColor=document.getElementById("color");
+    console.log(valueColor.value);
+    let color=valueColor.value;
     general(color);  
 
 }
