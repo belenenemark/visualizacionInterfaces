@@ -11,9 +11,14 @@ canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 let lapiz= document.getElementById("lapiz").addEventListener('click',draw);
 let goma= document.getElementById("goma").addEventListener('click',clean);
 let download=document.getElementById("download");
-let descarga=download.addEventListener("click",function(e){
-    save();
-});
+//limpiar lienzo
+let cleanLienzo=document.getElementById("lienzo");
+cleanLienzo.addEventListener("click",function(e){
+    ctx.fillStyle="#ffffff";
+    ctx.fillRect(0,0,canvas.clientWidth,canvas.height);
+
+})
+
 //dibujar en el lienzo
 function draw(){
     ctx.fillStyle="#ffffff";
@@ -127,6 +132,52 @@ function contrast(contraste,pixels){
                 }
 
 }
+//blur 
+function blur(pixels){
+    let variation = [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9];
+    let size = Math.sqrt(variation.length);
+    let half = Math.floor(size / 2);
+    let width = canvas.width;
+    let height = canvas.height;
+    let inputData = ctx.getImageData(0, 0, width, height).data;
+    let pixelsAbove;
+    let weight;
+    let neighborY;
+    let neighborX;
+    let inputIndex;
+    let outputIndex;
+
+    for (let i = 0; i < height; ++i) {
+        pixelsAbove = i * width;
+        for (let j = 0; j < width; ++j) {
+         let   r = 0;
+         let   g = 0;
+         let   b = 0;
+
+            for (let variationY = 0; variationY < size; ++variationY) {
+                for (let variationX = 0; variationX < size; ++variationX) {
+                    weight = variation[variationY * size + variationX];
+                    neighborY = Math.min(
+                        height - 1,
+                        Math.max(0, i + variationY - half)
+                    );
+                    neighborX = Math.min(
+                        width - 1,
+                        Math.max(0, j + variationX - half)
+                    );
+                    inputIndex = (neighborY * width + neighborX) * 4;
+                    r += inputData[inputIndex] * weight;
+                    g += inputData[inputIndex + 1] * weight;
+                    b += inputData[inputIndex + 2] * weight;
+                }
+            }
+            outputIndex = (pixelsAbove + j) * 4;
+            pixels[outputIndex] = r;
+            pixels[outputIndex + 1] = g;
+            pixels[outputIndex + 2] = b;
+        }
+    }
+}
 
 //apartir de aca pasa toda la magia con la imagen 
 input.onchange= e=>{
@@ -153,12 +204,15 @@ input.onchange= e=>{
             let imageData=context.getImageData(0,0,imageScaledWidth,imageScaledHeight);
             //modifica la data salteando de a 1 a negro
             var pixels  = imageData.data;
+
             //todos los botones
             let blw= document.getElementById("bw");
             let neg=document.getElementById("negative");
             let sep=document.getElementById("sepia");
             let con=document.getElementById("contrast");
+            let blu=document.getElementById("blur");
             //blanco y negro
+           
             blw.addEventListener("click",function(e){
                 bw(pixels);
                 context.putImageData(imageData,0,0);
@@ -181,11 +235,21 @@ input.onchange= e=>{
                     context.putImageData(imageData,0,0);
 
                 });
+            //blur
+            blu.addEventListener("click",function(e){
+                blur(pixels);
+                context.putImageData(imageData,0,0);
+
+            });
+
 
         }
     }
 }
-//guardar el archivo 
+//guardar el archivo
+let descarga=download.addEventListener("click",function(e){
+    save();
+});
 function save(){
     
     let link = window.document.createElement( 'a' ),
@@ -199,7 +263,32 @@ function save(){
     link.click();
     window.document.body.removeChild( link );
 }
-
+//elegir entre una opcion y la otra 
+function chooseFilter(filter){
+    switch (filter)
+	{
+	case "Blur":
+        blur(pixels);
+        context.putImageData(imageData,0,0);
+		break
+	case "contrast":
+		contrast(100,pixels);
+         context.putImageData(imageData,0,0);
+		break
+    case "sepia":
+        sepia(pixels);
+        context.putImageData(imageData,0,0);
+            break
+    case "negative":
+        negative(pixels);
+        context.putImageData(imageData,0,0);
+            break
+     case "bw":
+             bw(pixels);
+            context.putImageData(imageData,0,0);
+                    break
+	}
+}
 
 
 
