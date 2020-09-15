@@ -14,8 +14,9 @@ let download=document.getElementById("download");
 //limpiar lienzo
 let cleanLienzo=document.getElementById("lienzo");
 cleanLienzo.addEventListener("click",function(e){
+    
     ctx.fillStyle="#ffffff";
-    ctx.fillRect(0,0,canvas.clientWidth,canvas.height);
+    ctx.fillRect(0,0,1500,1000);
 
 })
 
