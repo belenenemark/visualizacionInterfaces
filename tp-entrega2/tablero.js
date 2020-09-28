@@ -4,6 +4,8 @@ class tablero{
         this.valx=valx;
         this.valy=valy;
         this.arrCirculos=[];
+        this.jugador1=new jugador("blue",(valx*valy)/2);
+        this.jugador2=new jugador("red",(valx*valy)/2);
     }
 
     //mensaje para verificar que el contexto este seteado
@@ -35,6 +37,7 @@ class tablero{
         }
         //console.log(this.arrCirculos);
     }
+    //crea la tabla apartir de la medida 
    createTable(){
     let tamw=0;
     let i=1;
@@ -62,6 +65,18 @@ class tablero{
         i++;
     }
     }  
+
+    drawFicha(e){
+       let x = e.offsetX;
+       let y = e.offsetY;
+       let px=this.ctx.width/this.valx;
+        let py=this.ctx.height/this.valy;
+        let Ppi=Math.PI;
+        let radi=((2*(px+py))/(2*Ppi))/2;
+        this.jugador1.drawFicha(this.ctx,x,y,radi);
+    
+    }
+    
 }  
 
 

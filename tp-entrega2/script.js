@@ -16,6 +16,8 @@ canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 //medida del ctx ajustada al canvas
 ctx.width=canvas.width;
 ctx.height=canvas.height;
+var tab2;
+
 //aca se redimensiona el tamaño del tablero
 let medida= document.getElementById("tablero");
 medida.addEventListener("click",function(e){
@@ -26,23 +28,28 @@ medida.addEventListener("click",function(e){
     let taby=document.getElementById("y");
     let valx=parseInt(tabx.value)+1;
     let valy= parseInt(taby.value)+1;
+    let  tab=new tablero(ctx,valx,valy);
     
-    
-    
-
-    //este if controla que no se rompa la simetria en el tablero 
+ //este if controla que no se rompa la simetria en el tablero 
     if((valx/valy<=3)&&(valy/valx<=1.3)&&(valx>=4)&&(valy>=4)){
-       // drawTable(valx,valy,ctx);
-         let tab=new tablero(ctx,valx,valy);
-       // tab.message();
         tab.createTable();
-        tab.showArr();
+        canvas.addEventListener("mousedown",function(e){
+            tab.drawFicha(e);
+        
+        });
+        console.log(tab2);
+
     }else{
         alert("Valor de tablero invalido, tiene que ser un numero mayor a 4 y la fila mayor que la columna");
     }
-   
-
 });
+
+if(tab2!=null){
+    tab2.showArr();
+
+}
+
+
 
 
 
