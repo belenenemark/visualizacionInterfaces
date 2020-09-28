@@ -75,7 +75,7 @@ function soltarCirculo(e) {
     arrastrar=false;
     circuloElegido = null;
   }
-  function redraw()
+  
   function armarFigura(e){
     let x = e.layerX;
     let y = e.layerY;
@@ -89,7 +89,7 @@ function soltarCirculo(e) {
       }else{
         this.circuloElegido.setX(x);
         this.circuloElegido.setY(y);
-        redraw();
+        
       }
     }
   }
