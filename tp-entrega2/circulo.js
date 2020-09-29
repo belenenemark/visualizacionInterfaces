@@ -65,7 +65,6 @@ class Circulo extends Figura {
    }
    
    isClicked(x,y){
-       console.log("entra al isclicked");
     let pos = Math.sqrt( Math.pow((x - this.x),2) + Math.pow((y - this.y),2)  );
     return pos <= this.radio;
    }

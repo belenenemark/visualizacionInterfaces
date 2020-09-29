@@ -5,8 +5,15 @@ class jugador{
         this.colorFicha=color;
     }
 
+    getcolorFicha(){
+        return this.colorFicha;
+    }
+
     setPosiciones(circulo){
         this.posiciones.push(circulo);
+    }
+    getPosiciones(){
+        return this.posiciones;
     }
     drawFicha(ctx,x,y,radio){
         this.ficha= new Circulo(x,y,this.colorFicha,radio);

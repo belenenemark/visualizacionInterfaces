@@ -17,6 +17,12 @@ class tablero{
         console.log(this.valy);
     
     }
+    getjugador1(){
+        return this.jugador1;
+    }
+    getjugador2(){
+        return this.jugador2;
+    }
     //inicializa el arreglo circulos
     initArrCirculos(){
         this.arrCirculos=new Array(this.valx);
@@ -41,6 +47,7 @@ class tablero{
    createTable(){
     let tamw=0;
     let i=1;
+    if(this.arrCirculos.length==0){
     this.initArrCirculos();
     while (tamw<this.ctx.width) {
         tamw=this.ctx.width/this.valx*i;
@@ -64,19 +71,73 @@ class tablero{
     }
         i++;
     }
+
+    }else{
+        for (let index = 1; index < this.valx; index++) {
+            for (let j = 1; j< this.valy; j++) {
+                this.arrCirculos[index][j].drawFill(this.ctx);
+                
+            }
+            
+        }
+   
+    }
+    
     }  
 
-    drawFicha(e){
-       let x = e.offsetX;
-       let y = e.offsetY;
+    drawFicha(x,y, jugad){
        let px=this.ctx.width/this.valx;
         let py=this.ctx.height/this.valy;
         let Ppi=Math.PI;
         let radi=((2*(px+py))/(2*Ppi))/2;
-        this.jugador1.drawFicha(this.ctx,x,y,radi);
+       jugad.drawFicha(this.ctx,x,y,radi);
     
     }
+    //esta funcion lo que hace es recibe la posicion del down 
+    changeCirculo(x,y,colorFicha, jugador){
+
+        if(this.arrCirculos!=null){
+            console.log("entro aca");
+            let index=1;
+            let encontrado=false;
+            while((index < this.valx) &&(!encontrado)) {
+                console.log("entro al primer while");
+                let j=1;
+                while((j<this.valy)&&(!encontrado)){
+                    console.log("entro al segundo while");
+                    if(this.arrCirculos[index][j].isClicked(x,y)){
+                        console.log("entro al isclicked");
+                        encontrado=true;
+                        this.asignarColor(index,colorFicha,jugador);
+                    }
+                    j++;
+                }
+               
+                index++; 
+            }
+           
+                
+            }
+        }
+        //asigna el color en el tablero y guarda la posicion que lleno el jugador 
+    asignarColor(i,colorFicha,jugador){
+      let  j=this.valx-1;
+        let asignado=false;
+        console.log("entro al asignar color");
+      while((j>=1)&&(!asignado)){
+         if (this.arrCirculos[i][j].getColor()=="black"){
+            this.arrCirculos[i][j].setColor(colorFicha);
+            this.arrCirculos[i][j].drawFill(this.ctx);
+            console.log(jugador.getPosiciones());
+            jugador.setPosiciones(this.arrCirculos[i][j]);
+            asignado=true;
+         } 
+         j--;  
+     }
+    }
+
+}
+  
     
-}  
 
 
