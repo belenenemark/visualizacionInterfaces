@@ -41,36 +41,46 @@ medida.addEventListener("click",function(e){
       y: Math.round(evt.clientY - rect.top)
     };
   }
+  function getTurno(tab,vuelta){
+      if(vuelta==1){
+          return tab.getjugador1();
+      }else if(vuelta==2){
+          return tab.getjugador2();
+      }
+  }
     function movimiento(canvas,tab){
-        
-        let vuelta=1;
+            let vuelta=1;
+            let turno=getTurno(tab,vuelta);
             canvas.addEventListener("mousedown",function(e){
-                if(vuelta=1){
-                    var mousePos = oMousePos(canvas, e);
-                    tab.drawFicha(e.offsetX,e.offsetY,tab.getjugador1());
+                        var mousePos = oMousePos(canvas, e);
+                    tab.drawFicha(e.offsetX,e.offsetY,turno);
                     if (ctx.isPointInPath(mousePos.x, mousePos.y)) {
                         arrastrar = true;
-                        vuelta=2;
-                    }
+                        
 
-                }
+                    }
                
                 
             
             },false);
             canvas.addEventListener("mousemove", function(evt) {
-                var mousePos = oMousePos(canvas, evt);
-                if (arrastrar) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    tab.createTable();
-                    X = mousePos.x , Y = mousePos.y 
-                   tab.drawFicha(X,Y,tab.getjugador1());
-                  }
+                
+                    var mousePos = oMousePos(canvas, evt);
+                    if (arrastrar) {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        tab.createTable();
+                        X = mousePos.x , Y = mousePos.y 
+                       tab.drawFicha(X,Y,turno);
+                      }
+
+               
               }, false);
               canvas.addEventListener("mouseup", function(evt) {
-                
-                    tab.changeCirculo(evt.offsetX,evt.offsetY,tab.getjugador1().getcolorFicha(),tab.getjugador1());
-                    arrastrar = false;
+                        tab.changeCirculo(evt.offsetX,evt.offsetY,turno.getcolorFicha(),turno);
+                        arrastrar = false;
+                        vuelta=2;
+
+                   
                     
                      
                 
