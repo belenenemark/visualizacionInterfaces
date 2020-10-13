@@ -42,6 +42,7 @@ medida.addEventListener("click",function(e){
     };
   }
   function getTurno(tab,vuelta){
+      console.log(vuelta);
       if(vuelta==1){
           return tab.getjugador1();
       }else if(vuelta==2){
@@ -76,9 +77,21 @@ medida.addEventListener("click",function(e){
                
               }, false);
               canvas.addEventListener("mouseup", function(evt) {
-                        tab.changeCirculo(evt.offsetX,evt.offsetY,turno.getcolorFicha(),turno);
+                tab.changeCirculo(evt.offsetX,evt.offsetY,turno.getcolorFicha(),turno);
+                
                         arrastrar = false;
-                        vuelta=2;
+                        if(vuelta==1){
+                            vuelta=2;
+                            turno=getTurno(tab,vuelta);
+                           
+
+                        }else if(vuelta==2){
+                            vuelta=1;
+                            turno=getTurno(tab,vuelta);
+                            
+                        }
+                        console.log(turno);
+                       
 
                    
                     

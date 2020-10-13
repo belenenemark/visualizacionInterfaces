@@ -97,16 +97,15 @@ class tablero{
     changeCirculo(x,y,colorFicha, jugador){
 
         if(this.arrCirculos!=null){
-            console.log("entro aca");
             let index=1;
             let encontrado=false;
             while((index < this.valx) &&(!encontrado)) {
-                console.log("entro al primer while");
+                
                 let j=1;
                 while((j<this.valy)&&(!encontrado)){
-                    console.log("entro al segundo while");
+                    
                     if(this.arrCirculos[index][j].isClicked(x,y)){
-                        console.log("entro al isclicked");
+                       
                         encontrado=true;
                         this.asignarColor(index,colorFicha,jugador);
                     }
@@ -123,17 +122,20 @@ class tablero{
     asignarColor(i,colorFicha,jugador){
       let  j=this.valx-1;
         let asignado=false;
-        console.log("entro al asignar color");
       while((j>=1)&&(!asignado)){
          if (this.arrCirculos[i][j].getColor()=="black"){
             this.arrCirculos[i][j].setColor(colorFicha);
             this.arrCirculos[i][j].drawFill(this.ctx);
-            console.log(jugador.getPosiciones());
             jugador.setPosiciones(this.arrCirculos[i][j]);
             asignado=true;
          } 
          j--;  
      }
+    }
+    borrarFicha(x,y){
+        //buscar en el arreglo de circulos con las posiciones x, y => para eliminar la posicion i, j 
+        
+
     }
 
 }

@@ -17,7 +17,7 @@ class jugador{
     }
     drawFicha(ctx,x,y,radio){
         this.ficha= new Circulo(x,y,this.colorFicha,radio);
-        this.setPosiciones(this.ficha);
+        //this.setPosiciones(this.ficha);
         this.ficha.drawFill(ctx);
     }
 
