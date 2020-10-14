@@ -6,6 +6,10 @@ class tablero{
         this.arrCirculos=[];
         this.jugador1=new jugador("blue",(valx*valy)/2);
         this.jugador2=new jugador("red",(valx*valy)/2);
+        this.lastPosX=null;
+        this.lastPosY=null;
+        this.numeroLineas=4;
+        this.estadoJuego="jugando";
     }
 
     //mensaje para verificar que el contexto este seteado
@@ -22,6 +26,9 @@ class tablero{
     }
     getjugador2(){
         return this.jugador2;
+    }
+    getEstadoJuego(){
+        return this.estadoJuego;
     }
     //inicializa el arreglo circulos
     initArrCirculos(){
@@ -96,7 +103,7 @@ class tablero{
     //esta funcion lo que hace es recibe la posicion del down 
     changeCirculo(x,y,colorFicha, jugador){
 
-        if(this.arrCirculos!=null){
+        if((this.arrCirculos!=null)&&(this.estadoJuego=="jugando")){
             let index=1;
             let encontrado=false;
             while((index < this.valx) &&(!encontrado)) {
@@ -127,6 +134,8 @@ class tablero{
             this.arrCirculos[i][j].setColor(colorFicha);
             this.arrCirculos[i][j].drawFill(this.ctx);
             jugador.setPosiciones(this.arrCirculos[i][j]);
+            this.lastPosX=i;
+            this.lastPosY=j;
             asignado=true;
          } 
          j--;  
@@ -134,8 +143,120 @@ class tablero{
     }
     borrarFicha(x,y){
         //buscar en el arreglo de circulos con las posiciones x, y => para eliminar la posicion i, j 
-        
 
+
+    }
+    caminoHorizontal(f,c){
+
+
+    }
+    winner(){
+        if((this.lastPosX!=null)&&(this.lastPosY!=null)){
+
+       
+        let colorF=this.arrCirculos[this.lastPosX][this.lastPosY].getColor();
+        console.log(colorF);
+
+        let i=this.lastPosY;
+        let contador=0;
+        let contDerecha=0;
+        //evalua horizontal hacia izquierda 
+        while((i>0)&&(this.arrCirculos[this.lastPosX][i]!=null)){
+            if(this.arrCirculos[this.lastPosX][i].getColor()==colorF){
+                contador++;
+            }else
+            break;
+            i--;
+        }
+        i=this.lastPosY;
+        //evalua horizontal hacia derecha
+        while((i<this.valy)&&(this.arrCirculos[this.lastPosX][i]!=null)){
+            if(this.arrCirculos[this.lastPosX][i].getColor()==colorF){
+                contDerecha++;
+
+            }else
+            break;
+
+            
+            i++;
+        }
+        //evalua si gano solo con horizontales
+        if((contDerecha+contador-1)==this.numeroLineas){
+            this.estadoJuego="finalizado";
+            return true;
+        }
+        i=this.lastPosX;
+        contador=0;
+        //evalua cantidad para abajo
+        while((i<this.valx)&&(this.arrCirculos[i][this.lastPosY]!=null)){
+            if(this.arrCirculos[i][this.lastPosY].getColor()==colorF){
+                contador++;
+
+            }else
+            break;
+            i++;
+        }
+        if(contador==this.numeroLineas){
+            this.estadoJuego="finalizado";
+            return true;
+        }
+        //evalua diagonal de izquierda a derecha 
+        i=0;
+        contador=0;
+        while((this.lastPosX-i>=1)&&(this.lastPosY-i>=1)&&(this.arrCirculos[this.lastPosX-i][this.lastPosY-i]!=null)){
+            if(this.arrCirculos[this.lastPosX-i][this.lastPosY-i].getColor()==colorF){
+                contador++;
+
+            }else{
+                break;
+            }
+            
+            i++;
+        }
+        i=0;
+        contDerecha=0;
+        while((this.lastPosX+i<this.valx)&&(this.lastPosY+i<this.valy)&&(this.arrCirculos[this.lastPosX+i][this.lastPosY+i]!=null)){
+            if(this.arrCirculos[this.lastPosX+i][this.lastPosY+i].getColor()==colorF){
+                contDerecha++;
+
+            }else
+            break;
+            i++;
+        }
+        if((contDerecha+contador-1)==this.numeroLineas){
+            this.estadoJuego="finalizado";
+            return true;
+        }
+        //evalua diagonal de derecha a izquierda
+        i=0;
+        contador=0;
+        while((this.lastPosX+i<this.valx)&&(this.lastPosY-i>=1)&&(this.arrCirculos[this.lastPosX+i][this.lastPosY-i]!=null)){
+            if(this.arrCirculos[this.lastPosX+i][this.lastPosY-i].getColor()==colorF){
+                contador++;
+
+            }else{
+                break;
+            }
+            
+            i++;
+        }
+        i=0;
+        contDerecha=0;
+        while((this.lastPosX-i>=1)&&(this.lastPosY+i<this.valy)&&(this.arrCirculos[this.lastPosX-i][this.lastPosY+i]!=null)){
+            if(this.arrCirculos[this.lastPosX-i][this.lastPosY+i].getColor()==colorF){
+                contDerecha++;
+
+            }else
+            break;
+            i++;
+        }
+        if((contDerecha+contador-1)==this.numeroLineas){
+            this.estadoJuego="finalizado";
+            return true;
+        }
+
+              }
+        return false;
     }
 
 }

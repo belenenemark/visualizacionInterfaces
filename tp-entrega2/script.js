@@ -17,10 +17,12 @@ canvas.height=parseInt(paintStyle.getPropertyValue("height"));
 ctx.width=canvas.width;
 ctx.height=canvas.height;
 
-
+//nombre de jugador 
+let nombrejug=document.getElementById("jugador");
 //aca se redimensiona el tamaño del tablero
 let medida= document.getElementById("tablero");
 medida.addEventListener("click",function(e){
+    nombrejug.innerHTML="Turno jugador Azul";
     ctx.fillStyle="#ffffff";
     ctx.fillRect(0,0,canvas.width,canvas.height);
     //para armar los valores del tablero
@@ -50,47 +52,63 @@ medida.addEventListener("click",function(e){
       }
   }
     function movimiento(canvas,tab){
-            let vuelta=1;
-            let turno=getTurno(tab,vuelta);
-            canvas.addEventListener("mousedown",function(e){
-                        var mousePos = oMousePos(canvas, e);
-                    tab.drawFicha(e.offsetX,e.offsetY,turno);
+        let vuelta=1;
+        let turno=getTurno(tab,vuelta);
+        canvas.addEventListener("mousedown",function(e){ 
+                if(tab.getEstadoJuego()=="jugando"){
+                    var mousePos = oMousePos(canvas, e);
+                 tab.drawFicha(e.offsetX,e.offsetY,turno);
                     if (ctx.isPointInPath(mousePos.x, mousePos.y)) {
                         arrastrar = true;
-                        
-
                     }
+                }
+                
                
                 
             
-            },false);
-            canvas.addEventListener("mousemove", function(evt) {
-                
-                    var mousePos = oMousePos(canvas, evt);
-                    if (arrastrar) {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        tab.createTable();
-                        X = mousePos.x , Y = mousePos.y 
-                       tab.drawFicha(X,Y,turno);
-                      }
+        },false);
+        canvas.addEventListener("mousemove", function(evt) {
 
+           if(tab.getEstadoJuego()=="jugando"){     
+            var mousePos = oMousePos(canvas, evt);
+                if (arrastrar) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                     tab.createTable();
+                     X = mousePos.x , Y = mousePos.y 
+                    tab.drawFicha(X,Y,turno);
+                }
+             }
                
               }, false);
               canvas.addEventListener("mouseup", function(evt) {
+                if(tab.getEstadoJuego()=="jugando"){
+                 
                 tab.changeCirculo(evt.offsetX,evt.offsetY,turno.getcolorFicha(),turno);
-                
-                        arrastrar = false;
-                        if(vuelta==1){
-                            vuelta=2;
-                            turno=getTurno(tab,vuelta);
-                           
+                 arrastrar = false;
+                        
+                //re dibuja el canvas
+                if(tab.winner()){
+                    alert("Hay ganador");
 
-                        }else if(vuelta==2){
-                            vuelta=1;
-                            turno=getTurno(tab,vuelta);
-                            
-                        }
-                        console.log(turno);
+                }else{
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    tab.createTable();
+
+                }
+                if(vuelta==1){
+                    nombrejug.innerHTML="Turno jugador Rojo";
+                    vuelta=2;
+                    turno=getTurno(tab,vuelta);
+                   
+
+                }else if(vuelta==2){
+                    nombrejug.innerHTML="Turno jugador Azul";
+                    vuelta=1;
+                    turno=getTurno(tab,vuelta);
+                    
+                }
+            }
+                
                        
 
                    
@@ -103,7 +121,7 @@ medida.addEventListener("click",function(e){
     }
  //este if controla que no se rompa la simetria en el tablero y adentro del mismo se juega 
     if((valx/valy<=3)&&(valy/valx<=1.3)&&(valx>=4)&&(valy>=4)){
-        tab.createTable();
+       tab.createTable();
         //todas las acciones para que se mueva al rededor del tablero
             movimiento(canvas,tab);
        
