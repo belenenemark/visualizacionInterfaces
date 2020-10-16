@@ -72,6 +72,7 @@ medida.addEventListener("click",function(e){
            if(tab.getEstadoJuego()=="jugando"){     
             var mousePos = oMousePos(canvas, evt);
                 if (arrastrar) {
+                    
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                      tab.createTable();
                      X = mousePos.x , Y = mousePos.y 

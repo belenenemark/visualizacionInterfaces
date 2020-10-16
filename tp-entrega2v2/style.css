@@ -18,7 +18,7 @@ h1{
 }
 #content{
     width:800px;
-    height:900px;
+    height:600px;
     margin: 0 auto;
     margin-top: 0px;
     background-color:black; 
@@ -27,4 +27,13 @@ h1{
     border-width: 1px;
 
 }
+#jugar {
+    padding: 10px 20px;
+    background-color: #00c69f; /* Código de un color Turquesa */
+    color: white!important;
+    
+}
 
+#jugar:disabled {
+    background: red;
+  }
