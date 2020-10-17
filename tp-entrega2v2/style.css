@@ -37,3 +37,21 @@ h1{
 #jugar:disabled {
     background: red;
   }
+.po{
+    visibility: hidden;
+}
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: visible; /* Este valor se cambió de hidden a visible */
+    opacity: 1; /* Este valor se cambió de 0 a 1 */
+}
+#overlay:target {
+    visibility: hidden;
+    opacity: 0;
+}

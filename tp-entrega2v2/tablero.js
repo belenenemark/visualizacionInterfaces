@@ -27,6 +27,9 @@ class Tablero{
             
         }
     }
+    getEstado(){
+        return this.estadoJuego;
+    }
     initTableroNuevo(){
         //hacer cambios para que buclee bien 
         //con esto determino el ancho y alto de las casillas
@@ -75,10 +78,9 @@ class Tablero{
     }
     createTable(){
        //en caso de que el arreglo este vacio
-        if(this.checkarray(this.arrCirculos)){
+        if(this.checkarray(this.arrCirculos)||this.estadoJuego=="finalizado"){
             this.initTableroNuevo();
-            console.table(this.arrCirculos);
-            console.table(this.cuadrados);
+           this.estadoJuego="jugando";
 
         }else{
             //en caso de que el arreglo este completo

@@ -49,28 +49,28 @@ function movimientos(tab,canvas){
     let turno=1;
     let jugador=document.getElementById("jugador");
     //accion cuando baja el mouse
+    
    let mov_abajo=addEventListener("mousedown",function(e){
-        //esto para poder activar el mousemove
+    if(tab.getEstado()=="jugando"){
+              //esto para poder activar el mousemove
         var mousePos = oMousePos(canvas,e);
-        
-
         //con esto  manejo los turnos de cada jugador
       if(turno==1){
           jugador.innerHTML="Juega Ficha Azul";
         tab.drawFicha(e.offsetX,e.offsetY,"blue");
-        
-
       }else {
         jugador.innerHTML="Juega Ficha Roja";
-          tab.drawFicha(e.offsetX,e.offsetY,"red");    
-           
-    }
+          tab.drawFicha(e.offsetX,e.offsetY,"red");      
+      }
     if (ctx.isPointInPath(mousePos.x, mousePos.y)) {
         arrastrar = true;
     }
+    }
+     
        
     });
     let enmov=addEventListener("mousemove",function(e){
+         if(tab.getEstado()=="jugando"){
         var mousePos = oMousePos(canvas, e);
                 if (arrastrar) {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -86,16 +86,34 @@ function movimientos(tab,canvas){
                   }
                     
                 }
+            }      
         
     })
 
    
    let mov_arriba=addEventListener("mouseup",function(e){
+    if(tab.getEstado()=="jugando"){   
     tab.addFichaTablero(e.offsetX,e.offsetY,turno);
     arrastrar=false;
       tab.createTable();
       if(tab.winner()){
-        alert("Hay ganador");
+        let popup=document.getElementById("popup");
+       popup.classList.replace("po","overlay");
+
+        let ganador=document.getElementById("ganador");
+        //esto indica ganadores
+        if(turno==1){
+            ganador.innerHTML="Gano el jugador Azul";
+        }else{
+            ganador.innerHTML="Gano el jugador Rojo";
+        }
+        //y bueno aca para reiniciar la partida 
+        let iniciar=document.getElementById("iniciar");
+        iniciar.addEventListener("click",function(e){
+            tab.createTable();
+            popup.classList.replace("overlay","po");
+        })
+
 
     }else{
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -107,9 +125,11 @@ function movimientos(tab,canvas){
        }else{
            turno=1;
        }
-     
+    }
         
     })
+
+    
 
 }
 function jugar4enlinea(){
