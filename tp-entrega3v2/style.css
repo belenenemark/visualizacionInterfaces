@@ -1,0 +1,168 @@
+
+/*fondo parallax*/
+* {
+    padding:0;
+    margin:0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+ }
+ @keyframes back{
+     /*luffy, nubes,cielo*/
+     0% {background-position:0, 0% top}
+     25%{ background-position:0, 25% top}
+     50%{background-position:0,50% top}
+     75%{background-position:0,75% top,}
+    100% {background-position:0,100% top}
+ }
+@-webkit-keyframes back{
+     /*luffy, nubes,cielo*/
+     0% {background-position:0, 0% top}
+     25%{ background-position:0, 25% top}
+     50%{background-position:0,50% top}
+     75%{background-position:0,75% top,}
+    100% {background-position:0,100% top}
+}
+ body{
+     background-color:rgb(40, 63, 92);
+     margin: 0;
+      width: 100%;
+     height:100%;
+      /*luffy, nubes,cielo*/
+     background-image: url("images/image_fondosinfondo.png"),url("images/nubesrojas.png");
+     background-repeat: no-repeat,repeat-x ;
+     background-attachment: fixed;
+     background-size:cover,400px 300px;
+     animation: back 20s linear infinite; 
+
+ }
+ /*logo one piece animar ingreso*/
+
+
+ @-webkit-keyframes slide {
+    100% { margin-left: 30%; }
+}
+
+@keyframes slide {
+    100% { margin-left: 30%; }
+}
+@-webkit-keyframes slide1 {
+    100% { margin-left: 50%; }
+}
+
+@keyframes slide1{
+    100% { margin-left: 50%; }
+}
+ .logo{
+     margin-top: 10%;
+     margin-left: -100%;
+     padding: 0;
+     animation: slide 10s forwards;
+ }
+ .logo img{
+     width: 50%;
+     height: 100px;
+ }
+/*countdown inciso 4*/
+ .countdown{
+     position: absolute;
+     top: 10%;
+     margin-left: -100%;
+     transform: translate(-50%,-50%);
+     animation: slide1 2s forwards;
+ }
+ .countdown span{
+     font-family: grenze;
+     font-weight: bold;
+     color: rgb(248,224,4);
+     border: 2px solid #fff;
+     border-radius: 25px;
+     box-shadow: 2px 1px 12px #fff;
+     margin: 0 10px;
+     padding: 0 30px;
+
+ }
+ .box{
+     display: inline-block;
+     overflow: hidden;
+     height: 1em;
+     line-height: 1em;
+     font-weight: bold;
+     font-size: 4em;
+ }
+
+ /*Slider inciso 6*/
+ .slider{
+     width: 80%;
+     margin-top: 0%;
+     margin-left: 10%;
+     padding: 0;
+     overflow: hidden;
+ }
+.slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: cambio 20s infinite;
+}
+.slider li{
+    width:100%;
+    list-style: none;
+}
+
+.slider li img{
+   width:100%;
+   height:400px;
+}
+
+@keyframes cambio{
+   0%{margin-left: 0;}
+   20%{margin-left: 0;}
+   25%{margin-left: -100%;}
+   45%{margin-left: -100%;}
+   50%{margin-left: -200%;}
+   70%{margin-left: -200%;}
+   75%{margin-left: -300%;}
+   100%{margin-left: -300%;}
+}
+ /*Resenia de pelicula*/
+ .resenia{
+     margin-left: 10%;
+     width: 80%;
+     height: 500px;
+    background-color: blueviolet;
+ }
+ h1{
+     font-size: 40px;
+     text-align: center;
+     font-family: Georgia, 'Times New Roman', Times, serif;
+     color: yellow;
+ }
+hr{
+    background-color: red;
+    width:100%;
+    height: 5px;
+    border: none;
+    border-radius: 50%;
+}
+p{
+    font-size: 20px;
+}
+.resenia img{
+    margin-left: 22%;
+    width: 40%;
+    height: 273px;
+}
+
+.resenia ul{
+    display: flex;
+}
+.resenia ul li img{
+    margin-left: 0%;
+    width: 100%;
+}
+.resenia ul li{
+    width: 33%;
+     list-style: none;
+}
