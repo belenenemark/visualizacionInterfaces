@@ -5,9 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Piece-Stampede v2
     </title>
+    
+    <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylecard.css">
 </head>
 <body>
+    <div class="respmenu">
+        <input type="checkbox">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comentarios.html">Comentarios</a></li>
+            <li><a href="calendarios.html">Calendario</a></li>
+            <li><a href="#">Peliculas Anteriores</a></li>
+            <li><a href="#">Curiosidades de la pelicula</a></li>
+            <li><a href="#">Contactanos</a></li>
+            <li><a href="#">Sobre el autor</a></li>
+            <li><a href="#">Tienda</a></li>
+          </ul>
+        </nav>
+      </div>
     <div class="logo"><img src="images/logo_onepiece.png" alt=""></div>
     <div class="slider">
         <ul>
@@ -37,11 +57,45 @@
     <section class="resenia">
         <h1>Personajes de La pelicula</h1>
         <hr>
-        <ul>
-            <li><img src="images/sabo.jpg" alt=""><p>Sabo</p></li>
-            <li><img src="images/luffy.jpg" alt=""><p>Luffy</p></li>
-            <li><img src="images/barbanegra.jpg" alt=""><p>Barbanegra</p></li>
-        </ul>   
+        <!-- Esta es mi card -->
+        <div class="card middle">
+                <div class="front">
+                    <img src="images/sabo.jpg" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <p>Nombre:Sabo</p>
+                        <p>Puesto: Miembro del Ejercito Revolucionario</p>
+                        <p>Curiosidades: Es hermano de Luffy, portador de la fruta Mera Mera</p>
+                    </div>
+                </div> 
+            </div> 
+            <!-- Esta es mi card -->
+            <div class="card middle">
+                <div class="front">
+                    <img src="images/barbanegra.jpg" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <p>Nombre:Marshal D. Teach</p>
+                        <p>Puesto:Capitan de los Piratas de Barbanegra</p>
+                        <p>Curiosidades:No se conocen sus verdaderas habilidades, portador de la fruta Oscuridad</p>
+                    </div>
+                </div> 
+            </div>
+            <!-- Esta es mi card -->
+            <div class="card middle"> 
+                <div class="front">
+                    <img src="images/luffy.jpg" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <p>Nombre:Monkey D. Luffy</p>
+                        <p>Puesto: Capitan de los Sobrero de Paja</p>
+                        <p>Curiosidades:A pesar de ser hijo de un marine se hizo a la mar, portador de la fruta Gomu Gomu</p>
+                    </div>
+                </div> 
+            </div> 
     </section>
     <script src="script.js"></script>
 </body>
