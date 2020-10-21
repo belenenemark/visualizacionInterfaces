@@ -7,6 +7,8 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-variant: small-caps; 
+    
  }
  @keyframes back{
      /*luffy, nubes,cielo*/
@@ -34,8 +36,13 @@
      background-repeat: no-repeat,repeat-x ;
      background-attachment: fixed;
      background-size:cover,400px 300px;
-     animation: back 20s linear infinite; 
+     animation: back 20s linear infinite;
+     overflow: hidden; 
 
+ }
+ .titulo{
+     background: blueviolet;
+     font-size: 40px;
  }
  /*logo one piece animar ingreso*/
 
@@ -65,15 +72,17 @@
      height: 100px;
  }
 /*countdown inciso 4*/
+ .back_count{
+     width: 80%;
+    margin-left: 10%;
+     background-color: blueviolet;
+ }
  .countdown{
-    margin-top: 5%;
     position: relative;
-     margin-left: -100%;
-     transform: translate(-50%,-50%);
-     animation: slide1 2s forwards;
+     margin-left: 25%;
  }
  .countdown span{
-     font-family: grenze;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
      font-weight: bold;
      color: rgb(248,224,4);
      border: 2px solid #fff;
@@ -132,12 +141,11 @@
      width: 80%;
      height:50%;
     background-color: blueviolet;
-    margin-bottom: 10%;
+    margin-bottom: 0.5%;
  }
  h1{
      font-size: 40px;
      text-align: center;
-     color: yellow;
      margin-bottom: 40px;
  }
 hr{
@@ -178,8 +186,8 @@ p{
     padding: 10px 20px;
     border-bottom: 2px solid #456789;
     max-width: 200px;
-    background: #234567;
-    font-variant: small-caps;
+    background:blueviolet;
+     font-variant: small-caps; 
     text-shadow: 1px 1px black;
   }
 
@@ -206,7 +214,7 @@ p{
   .respmenu {
     color: white;
     position: relative; 
-    background: #123456;
+    background:blueviolet;
     min-height: 48px;
   }
    
@@ -228,7 +236,7 @@ p{
 
   /*Formulario de comentarios*/
   .formulario{
-       background-color: rgb(65, 182, 127); 
+       background-color: blueviolet; 
       width:50%;
       max-width: 100%;
       margin-left: 25%; 
@@ -240,10 +248,11 @@ p{
   .formulario__titulo{
       text-align: center;
       margin-top:0;
-      color: rgba(0,0,0, 0.7);
+      color: rgba(255,255,255, 0.7);
      
   }
   .formulario__submit{
+    color: rgba(255,255,255, 0.7);
       background-color: rgba(0,0,0, 0.7);
       transition: all 0.8s;
   }
@@ -256,6 +265,7 @@ p{
     font-size: 1.3em;
   }
   .formulario__label{
+    color: rgba(255,255,255, 0.7);
       padding-left: 15px;
       position: absolute;
       margin-top: -69px;
@@ -264,6 +274,7 @@ p{
 
   }
   .formulario__input{
+    color: rgba(255,255,255, 0.7);
       padding-left: 20px;
       background: transparent;
       border:1px solid rgba(0,0,0,0.3);
@@ -272,7 +283,7 @@ p{
       
     }
     .formulario__input:focus{
-        outline: 1px solid rgba(0,0,0, 0.7));
+        outline: 1px solid rgba(0,0,0, 0.7);
 
     }
     .formulario__input:focus + .formulario__label{
@@ -282,4 +293,89 @@ p{
         margin-top:-95px;
     }
 
-    
+   /*Loader en todas las paginas*/
+   .loading {
+    position: absolute;
+    top: 0;
+    background: #222;
+    color: #fff;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 100;
+    display: flex;
+ }
+ @keyframes gear2{
+    0%{background-size: 96%,100%;transform: translateX(-10px 10px ,0);}
+    50%{background-size: 98%,100%;transform: translateX(-5px 5px,0);}
+    100%{background-size: 96%,100%;transform: translateX(-10px -10px,0);}
+    }
+    .preloader {
+       margin: auto;
+       width: 300px;
+       height: 300px;
+       background: url("images/gear.png") no-repeat,url("images/luffygear.png") no-repeat;
+       background-size:cover,cover;
+       position: relative;
+       animation: gear2 0.5s linear infinite;
+    }
+ 
+ .cerrar {
+    transform: translateY(100%);
+    transition: all 2s ease-out;
+    animation: preloader 2s ;
+ }
+ 
+ @keyframes preloader {
+    90% {
+        width: 100%;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+ }
+ .hidden{
+    display: none;
+    opacity: 0;
+ }
+ /*Acordeon con la magia de html y css*/
+ .acordeon input{
+     display: none;
+ }
+ .acordeon__titulo{
+     display: block;
+     padding:15px;
+     background: blueviolet;
+     color: #fff;
+     font-size: 20px;
+     cursor: pointer;
+     border-bottom: 1px solid #fff;
+ }
+ .acordeon__titulo:hover{
+     background: rgba(138,43,226, 0.7);
+ }
+.acordeon__item{
+    background: #fff;
+}
+ .acordeon__contenido{
+     
+     height: 0;
+     overflow: hidden;
+     margin: 0;
+     transition: all 0.5s;
+ }
+
+ .acordeon input:checked ~ .acordeon__contenido{
+     height: auto;
+     margin: 15px 0;
+ }
+ /*Mover componentes visuales a partir que se scrollea*/
+ .animado{
+    background: url("images/sunny.png") no-repeat;
+    width: 150px;
+    height: 200px;
+    bottom: 0;
+    position: fixed;
+    z-index:99;
+}

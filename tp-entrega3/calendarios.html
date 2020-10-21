@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Loading forzado -->
+    <div class="loading" id="loading">
+      <div class="preloader">
+      </div>
+  </div>
     <div class="respmenu">
         <input type="checkbox">
         <i class="fas fa-bars"></i>
@@ -25,7 +30,32 @@
           </ul>
         </nav>
       </div>
-    <div class="logo"><img src="images/logo_onepiece.png" alt=""></div>   
-    
+    <div class="logo"><img src="images/logo_onepiece.png" alt=""></div>  
+    <h1 class="back_count">Calendario de actividades pre estreno</h1>
+    <!-- Inicio del acordeon animado con html y css  -->
+      <div class="acordeon">
+        <div class="acordeon__item">
+          <input type="radio" name="acordeon" id="item1"><label for="item1" class="acordeon__titulo">26/10/2020-Charla Eichiro Oda</label>
+
+          <p class="acordeon__contenido">El creador de One Piece, contestara preguntas por medio de la plataforma Classroom sobre esta nueva pelicula.Tambien se entregaran peluches de Luffy y Chopper</p>
+        </div>
+        <div class="acordeon__item">
+          <input type="radio" name="acordeon" id="item2"><label for="item2" class="acordeon__titulo">27/10/2020-Presentacion en vivo de Hiroshi Kitadani</label>
+          <p class="acordeon__contenido">El famoso cantante, hara su actuacion regalandonos los miticos opening que acompañaron a la serie</p>
+        </div>
+        <div class="acordeon__item">
+          <input type="radio" name="acordeon" id="item3"><label for="item3" class="acordeon__titulo">28/10/2020-Actuacion en vivo </label>
+          <p class="acordeon__contenido">Mayumi Tanaka y Kazuya Nakai(seiyuus de Luffy y Zoro respectivamente)haran una pequeña actuacion y ronda de preguntas para sus fans. Asistencia maxima 10 personas por covid</p>
+        </div>
+        <div class="acordeon__item">
+          <input type="radio" name="acordeon" id="item4"><label for="item4" class="acordeon__titulo">31/10/2020 Hiroki Koyama</label>
+          <p class="acordeon__contenido">El productor contara como fue la produccion de esta pelicula. Como ultimo dia de la presentacion, se organizara el asado de interfaces</p>
+        </div>
+      </div>
+      <!-- div para animacion scroller -->
+      <div class="animado">
+
+      </div>
+    <script src="loading.js"></script>
 </body>
 </html>

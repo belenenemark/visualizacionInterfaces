@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="stylecard.css">
 </head>
 <body>
+      <!-- Loading forzado -->
+  <div class="loading" id="loading">
+    <div class="preloader">
+    </div>
+</div>
     <div class="respmenu">
         <input type="checkbox">
         <i class="fas fa-bars"></i>
@@ -29,20 +34,22 @@
         </nav>
       </div>
     <div class="logo"><img src="images/logo_onepiece.png" alt=""></div>
-    <div class="slider">
-        <ul>
-            <li><img src="images/img1.jpg" alt=""></li>
-            <li><img src="images/img2.jpg" alt=""></li>
-            <li><img src="images/img3.jpg" alt=""></li>
-            <li><img src="images/img4.jpeg" alt=""></li>
-        </ul>
+    
+    <div class="back_count">
+        <div class="titulo">
+            <h1>Tiempo restante para el estreno</h1>
+            
+        </div>
+        <div class="countdown">
+            <span class="box four-number" id="days"></span>
+            <span class="box third-number"id="hours"></span>
+            <span class="box second-number" id="minutes"></span>
+            <span class="box first-number"id="seconds"></span>
+        </div>
+
     </div>
-    <div class="countdown">
-        <span class="box four-number" id="days"></span>
-        <span class="box third-number"id="hours"></span>
-        <span class="box second-number" id="minutes"></span>
-        <span class="box first-number"id="seconds"></span>
-    </div>
+    
+    
     <section class="resenia">
         <h1>Sinopsis de la pelicula</h1>
         <hr>
@@ -52,13 +59,22 @@
              Luffy y el resto de la banda reciben una invitación de su anfitrión Buena Festa, conocido como el Maestro de las Fiestas.
               Llegan para encontrar un lugar lleno de pabellones glamurosos y muchos piratas, incluidos los de la Peor Generación. El lugar es electrizante”.
             Todos se unen a la búsqueda de un gran tesoro para encontrar un tesoro perdido, esta vez el tesoro. Perteneció nada menos que a Gold Roger.</p>
-        <img src="images/img4.jpeg" alt="">    
+        <img src="images/img4.jpeg" alt=""> 
+        <h1>Avances de la pelicula</h1>
+        <div class="slider">
+            <ul>
+                <li><img src="images/img1.jpg" alt=""></li>
+                <li><img src="images/img2.jpg" alt=""></li>
+                <li><img src="images/img3.jpg" alt=""></li>
+                <li><img src="images/img4.jpeg" alt=""></li>
+            </ul>
+        </div>   
     </section>
-    <section class="resenia">
-        <h1>Personajes de La pelicula</h1>
+    <section class="resenia" id="pers">
+        <h1>Personajes Principales</h1>
         <hr>
-        <!-- Esta es mi card -->
-        <div class="card middle">
+        <div class="contenedor">
+            <div class="card middle">
                 <div class="front">
                     <img src="images/sabo.jpg" alt="">
                 </div>
@@ -96,7 +112,14 @@
                     </div>
                 </div> 
             </div> 
+        </div>
+        <!-- div para animacion scroller -->
+         <div class="animado">
+
+        </div>
+        
     </section>
+    <script src="loading.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
