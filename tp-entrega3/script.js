@@ -1,7 +1,7 @@
 console.log(document.getElementsByClassName("countdown").length!=0);
 /*Para el conuntdown*/ 
 if(document.getElementsByClassName(".countdown")){
-  let countDownDate = new Date("Oct 28, 2020 15:37:25").getTime();
+  let countDownDate = new Date("Oct 28, 2021 15:37:25").getTime();
   let x = setInterval(function() {
   let now = new Date().getTime();
   let distance = countDownDate - now;

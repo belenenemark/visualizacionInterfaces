@@ -11,31 +11,31 @@
     
  }
  @keyframes back{
-     /*luffy, nubes,cielo*/
-     0% {background-position:0, 0% top}
-     25%{ background-position:0, 25% top}
-     50%{background-position:0,50% top}
-     75%{background-position:0,75% top,}
-    100% {background-position:0,100% top}
+       /*sabo,boa, luffy,nubes*/
+     0% {background-position:30% 10%,20% 5%,0% 10%, 0% top}
+     25%{ background-position:55% 10%,45% 5%,25% 10%, 25% top}
+     50%{background-position:75% 10%,65% 5%,45% 10%,50% top}
+     75%{background-position:85% 10%,75% 5%,60% 10%,75% top,}
+    100% {background-position:100% 10%,90% 5%,80% 10%,100% top}
  }
 @-webkit-keyframes back{
-     /*luffy, nubes,cielo*/
-     0% {background-position:0, 0% top}
-     25%{ background-position:0, 25% top}
-     50%{background-position:0,50% top}
-     75%{background-position:0,75% top,}
-    100% {background-position:0,100% top}
+     / /*sabo,boa, luffy,nubes*/
+     0% {background-position:30% 10%,20% 5%,0% 10%, 0% top}
+     25%{ background-position:55% 10%,45% 5%,25% 10%, 25% top}
+     50%{background-position:75% 10%,65% 5%,45% 10%,50% top}
+     75%{background-position:85% 10%,75% 5%,60% 10%,75% top,}
+    100% {background-position:100% 10%,90% 5%,80% 10%,100% top}
 }
  body{
      background-color:rgb(40, 63, 92);
      margin: 0;
       width: 100%;
      height:100%;
-      /*luffy, nubes,cielo*/
-     background-image: url("images/image_fondosinfondo.png"),url("images/nubesrojas.png");
-     background-repeat: no-repeat,repeat-x ;
+     /*sabo,boa, luffy,nubes*/
+     background-image: url("images/sabo.png"),url("images/boa.png"),url("images/luffy.png"),url("images/nubesrojas.png"); 
+     background-repeat: no-repeat,no-repeat,no-repeat,repeat-x ;
      background-attachment: fixed;
-     background-size:cover,400px 300px;
+     background-size:200px 300px,200px 300px,200px 300px,400px 300px;
      animation: back 20s linear infinite;
      overflow: hidden; 
 
@@ -124,6 +124,21 @@
    width:100%;
    height:400px;
 }
+.resenia .botones  img{
+    width:30px !important;
+    height:20px !important;
+}
+img.arrow_der {
+    position: relative;
+    top: 340px;
+    left: 94.5%;
+}
+img.arrow_izq{
+    position: relative;
+    top: 340px;
+    right: 0px;
+}
+
 
 @keyframes cambio{
    0%{margin-left: 0;}
@@ -340,6 +355,38 @@ p{
     opacity: 0;
  }
  /*Acordeon con la magia de html y css*/
+ .acordeon{
+    width: 70%;
+    margin: auto;
+ }
+ .acordeon-img{
+    margin: auto;
+    width: 500px;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ .flip{
+    position: relative;
+    transition: all 1s ease;
+    transform: perspective(600px);
+    transform-origin: 100% 50%;
+    transform-style: preserve-3d;
+    width: 500px;
+    height: 300px;
+    }
+    .flip:hover{
+    transform: perspective(600px) rotateY(-180deg) translateX(100%);
+    }
+    .flip .flip-1,
+    .flip .flip-2{
+    position: absolute;
+    backface-visibility: hidden;
+    }
+    .flip .flip-2{
+    transform: rotateY(-180deg);
+    }  
  .acordeon input{
      display: none;
  }
@@ -368,7 +415,7 @@ p{
 
  .acordeon input:checked ~ .acordeon__contenido{
      height: auto;
-     margin: 15px 0;
+     padding: 10px;
  }
  /*Mover componentes visuales a partir que se scrollea*/
  .animado{
@@ -378,4 +425,36 @@ p{
     bottom: 0;
     position: fixed;
     z-index:99;
+}
+
+
+.img {
+    padding-top: 60px;
+}
+
+
+element.style {
+}
+.resenia div img {
+    margin-left: 0%;
+    width: 100%;
+}
+img.movie-img {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto;
+    width: 40% !important;
+}
+
+.coutdown-list{
+    display: inline-flex;
+    list-style-type: none;
+}
+
+.coutdown-list p {
+    margin-left: 30px;
+}
+
+.z-index-img{
+    
 }

@@ -1,5 +1,8 @@
 .contenedor{
-    margin-top: 24%;
+    margin-top: 10%;
+    display: inline-flex;
+    margin: auto;
+    padding-top: 10%;
 }
 .middle{
     position: relative;
