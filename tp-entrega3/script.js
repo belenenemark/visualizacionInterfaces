@@ -18,13 +18,10 @@ if(document.getElementsByClassName(".countdown")){
     let thiss= document.getElementById("seconds")
    thiss.innerHTML=seconds;
   // If the count down is over, write some text 
-  console.log(distance);
   if (distance < 0) {
     clearInterval(x);
-    console.log("entra al if");
    let expired= document.getElementById('count');
    expired.classList.add('count_hidden');
-   console.log(expired);
    let titulo= document.getElementById('tit');
    titulo.innerHTML+="<p>La pelicula ya fue estrenada</p>";
    
@@ -34,3 +31,7 @@ if(document.getElementsByClassName(".countdown")){
 }
 
 //para las flechas del contador
+let element = document.getElementById('sl');
+let elementStyle = window.getComputedStyle(element);
+let elementMargin = elementStyle.getPropertyValue('animation');
+console.log(elementMargin);
