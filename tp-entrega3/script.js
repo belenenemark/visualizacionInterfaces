@@ -1,7 +1,7 @@
 console.log(document.getElementsByClassName("countdown").length!=0);
 /*Para el conuntdown*/ 
 if(document.getElementsByClassName(".countdown")){
-  let countDownDate = new Date("Oct 28, 2021 15:37:25").getTime();
+  let countDownDate = new Date("Nov 10, 2020 15:37:25").getTime();
   let x = setInterval(function() {
   let now = new Date().getTime();
   let distance = countDownDate - now;
@@ -18,10 +18,19 @@ if(document.getElementsByClassName(".countdown")){
     let thiss= document.getElementById("seconds")
    thiss.innerHTML=seconds;
   // If the count down is over, write some text 
+  console.log(distance);
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("days").innerHTML = "EXPIRED";
+    console.log("entra al if");
+   let expired= document.getElementById('count');
+   expired.classList.add('count_hidden');
+   console.log(expired);
+   let titulo= document.getElementById('tit');
+   titulo.innerHTML+="<p>La pelicula ya fue estrenada</p>";
+   
   }
 }, 1000);
 
 }
+
+//para las flechas del contador
